@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, ScrollView, StyleSheet, SafeAreaView, Platform, ImageBackground } from 'react-native';
+import { View, Text, ScrollView, StyleSheet, SafeAreaView, Platform, ImageBackground, Alert } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { COLORS } from '../styles/colors';
 import { FONT, FONT_SIZES, } from '../styles/fonts';
@@ -7,19 +7,31 @@ import CustomTextInput from '../components/CustomTextInput';
 import SurpriseMeButton from '../components/SurpriseMeButton';
 import LogoStyleSelector from '../components/LogoStyleSelector';
 import CreateButton from '../components/CreateButton';
+import DesignStatusChip from '../components/DesignStatusChip';
 
-// Arka plan fotoğrafı
 const backgroundImage = require('../assets/images/back gradient.png');
 
-// Örnek metin
 const EXAMPLE_PROMPT = "A professional logo for Harrison & Co. Law Firm, using balanced serif fonts";
+
+const CHIP_LOADING_TIME = 40000;
 
 const LogoGeneratorScreen = () => {
     const [prompt, setPrompt] = useState('');
+    const [chipStatus, setChipStatus] = useState<'none' | 'loading' | 'ready'>('none');
 
-    // Surprise Me butonuna basıldığında örnek metni göster
     const handleSurpriseMe = () => {
         setPrompt(EXAMPLE_PROMPT);
+    };
+
+    const handleCreate = () => {
+        setChipStatus('loading');
+        setTimeout(() => {
+            setChipStatus('ready');
+        }, CHIP_LOADING_TIME);
+    };
+
+    const handleChipPress = () => {
+        Alert.alert('design is ready')
     };
 
     return (
@@ -31,8 +43,18 @@ const LogoGeneratorScreen = () => {
                     resizeMode="cover"
                 >
                     <View style={styles.contentContainer}>
+
                         <ScrollView contentContainerStyle={styles.scrollContent} keyboardShouldPersistTaps="handled">
                             <Text style={styles.logoHeader}>AI Logo</Text>
+                            {chipStatus !== 'none' && (
+                                <DesignStatusChip
+                                    status={chipStatus === 'loading' ? 'loading' : 'ready'}
+                                    onPress={chipStatus === 'ready' ? handleChipPress : undefined}
+                                    loadingText="Creating Your Design..."
+                                    readyText="Your Design is Ready!"
+                                    subText="Ready in 2 minutes"
+                                />
+                            )}
                             <View style={styles.promptContainer}>
                                 <Text style={styles.promptHeader}>Enter Your Prompt</Text>
                                 <SurpriseMeButton onPress={handleSurpriseMe} />
@@ -49,7 +71,7 @@ const LogoGeneratorScreen = () => {
                         </ScrollView>
 
                         <View style={styles.buttonContainer}>
-                            <CreateButton>Create ✨</CreateButton>
+                            <CreateButton onPress={handleCreate}>Create ✨</CreateButton>
                         </View>
                     </View>
                 </ImageBackground>
