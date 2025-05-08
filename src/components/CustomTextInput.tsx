@@ -14,14 +14,14 @@ interface Props {
 }
 
 /**
- * CustomTextInput - Özelleştirilmiş, gradyan arkaplanı olan metin giriş alanı
  * 
- * @param value - Metin değeri
- * @param onChangeText - Metin değiştiğinde çağrılacak fonksiyon
- * @param placeholder - Giriş alanı boşken gösterilecek placeholder metni
- * @param maxLength - Maksimum karakter sayısı (varsayılan: 500)
- * @param style - Ek stil eklemek için (isteğe bağlı)
- * @param autoFocus - Otomatik fokus olsun mu (isteğe bağlı)
+ * 
+ * @param value 
+ * @param onChangeText 
+ * @param placeholder 
+ * @param maxLength
+ * @param style 
+ * @param autoFocus 
  */
 const CustomTextInput = ({
     value,
@@ -60,7 +60,7 @@ const CustomTextInput = ({
 const styles = StyleSheet.create({
     container: {
         width: '100%',
-        height: '25%', // Daha uzun input alanı
+        height: '25%',
         marginBottom: 16,
         borderRadius: 16,
         overflow: 'hidden',
@@ -69,13 +69,11 @@ const styles = StyleSheet.create({
         flex: 1,
         borderRadius: 16,
         backgroundColor: COLORS.inputBackground,
-        // Android blur efekti için
         ...Platform.select({
             android: {
                 elevation: 3,
             },
             ios: {
-                // iOS için özel gölge efekti
                 shadowColor: COLORS.background,
                 shadowOffset: { width: 0, height: 2 },
                 shadowOpacity: 0.1,
@@ -87,7 +85,7 @@ const styles = StyleSheet.create({
         flex: 1,
         paddingHorizontal: 16,
         paddingTop: 16,
-        paddingBottom: 32, // Karakter sayacına yeteri kadar yer bırak
+        paddingBottom: 32, 
         color: COLORS.text,
         fontSize: FONT_SIZES.md,
         fontFamily: FONT.regular,

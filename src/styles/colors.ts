@@ -42,4 +42,5 @@ export const COLORS = {
     chipSub: 'rgba(138, 140, 163, 0.7)',
     chipReadyGradientStart: '#5F2EEA',
     chipReadyGradientEnd: '#A259FF',
+    outpuStyleButton: '#FAFAFA1A'
 }; 

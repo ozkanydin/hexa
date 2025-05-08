@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, ScrollView, StyleSheet, SafeAreaView, Platform, ImageBackground, Alert } from 'react-native';
+import { View, Text, ScrollView, StyleSheet, SafeAreaView, Platform, ImageBackground, Alert, Modal } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { COLORS } from '../styles/colors';
 import { FONT, FONT_SIZES, } from '../styles/fonts';
@@ -8,16 +8,18 @@ import SurpriseMeButton from '../components/SurpriseMeButton';
 import LogoStyleSelector from '../components/LogoStyleSelector';
 import CreateButton from '../components/CreateButton';
 import DesignStatusChip from '../components/DesignStatusChip';
+import OutputScreen from './OutputScreen';
 
 const backgroundImage = require('../assets/images/back gradient.png');
 
 const EXAMPLE_PROMPT = "A professional logo for Harrison & Co. Law Firm, using balanced serif fonts";
 
-const CHIP_LOADING_TIME = 40000;
-
 const LogoGeneratorScreen = () => {
     const [prompt, setPrompt] = useState('');
     const [chipStatus, setChipStatus] = useState<'none' | 'loading' | 'ready'>('none');
+    const [modalVisible, setModalVisible] = useState(false);
+    const [loadingSeconds, setLoadingSeconds] = useState<number | null>(null);
+    const [selectedStyle, setSelectedStyle] = useState('no-style');
 
     const handleSurpriseMe = () => {
         setPrompt(EXAMPLE_PROMPT);
@@ -25,13 +27,16 @@ const LogoGeneratorScreen = () => {
 
     const handleCreate = () => {
         setChipStatus('loading');
+        const randomMs = Math.floor(Math.random() * (60000 - 30000 + 1)) + 30000;
+        setLoadingSeconds(Math.round(randomMs / 1000));
         setTimeout(() => {
             setChipStatus('ready');
-        }, CHIP_LOADING_TIME);
+            setLoadingSeconds(null);
+        }, randomMs);
     };
 
     const handleChipPress = () => {
-        Alert.alert('design is ready')
+        setModalVisible(true);
     };
 
     return (
@@ -43,7 +48,6 @@ const LogoGeneratorScreen = () => {
                     resizeMode="cover"
                 >
                     <View style={styles.contentContainer}>
-
                         <ScrollView contentContainerStyle={styles.scrollContent} keyboardShouldPersistTaps="handled">
                             <Text style={styles.logoHeader}>AI Logo</Text>
                             {chipStatus !== 'none' && (
@@ -52,7 +56,7 @@ const LogoGeneratorScreen = () => {
                                     onPress={chipStatus === 'ready' ? handleChipPress : undefined}
                                     loadingText="Creating Your Design..."
                                     readyText="Your Design is Ready!"
-                                    subText="Ready in 2 minutes"
+                                    subText={chipStatus === 'loading' && loadingSeconds ? `Ready in ${loadingSeconds} seconds` : undefined}
                                 />
                             )}
                             <View style={styles.promptContainer}>
@@ -66,14 +70,32 @@ const LogoGeneratorScreen = () => {
                                 maxLength={500}
                             />
                             <Text style={styles.logoStylesHeader}>Logo Styles</Text>
-                            <LogoStyleSelector />
+                            <LogoStyleSelector
+                                selectedStyleId={selectedStyle}
+                                onSelect={setSelectedStyle}
+                            />
                             <View style={styles.spacer} />
                         </ScrollView>
-
                         <View style={styles.buttonContainer}>
                             <CreateButton onPress={handleCreate}>Create ✨</CreateButton>
                         </View>
                     </View>
+                    <Modal
+                        visible={modalVisible}
+                        animationType="slide"
+                        onRequestClose={() => setModalVisible(false)}
+                        presentationStyle="pageSheet"
+                        style={{
+                            backgroundColor: 'blue',
+                        }}
+
+                    >
+                        <OutputScreen
+                            onClose={() => setModalVisible(false)}
+                            prompt={prompt}
+                            styleId={selectedStyle}
+                        />
+                    </Modal>
                 </ImageBackground>
             </View>
         </SafeAreaView>
@@ -105,7 +127,7 @@ const styles = StyleSheet.create({
     },
     logoHeader: {
         fontFamily: FONT.bold,
-        fontSize: FONT_SIZES.lg, // 20px
+        fontSize: FONT_SIZES.lg, 
         textAlign: 'center',
         color: COLORS.textHeading,
         fontWeight: '800',
@@ -120,14 +142,14 @@ const styles = StyleSheet.create({
     },
     promptHeader: {
         fontFamily: FONT.bold,
-        fontSize: FONT_SIZES.xl, // 20px
+        fontSize: FONT_SIZES.xl, 
         color: COLORS.textHeading,
         fontWeight: '800',
         letterSpacing: 0.1,
     },
     logoStylesHeader: {
         fontFamily: FONT.bold,
-        fontSize: FONT_SIZES.xl, // 20px
+        fontSize: FONT_SIZES.xl, 
         color: COLORS.textHeading,
         fontWeight: '800',
         marginBottom: 12,

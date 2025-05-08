@@ -4,13 +4,10 @@ import { Ionicons } from '@expo/vector-icons';
 import { COLORS } from '../styles/colors';
 import { FONT, FONT_SIZES } from '../styles/fonts';
 
-// Ekran genişliğini al
 const { width } = Dimensions.get('window');
-// Kart genişliği ve boşluk değerleri
 const CARD_WIDTH = Math.min(width * 0.25, 86);
 const SPACING = 10;
 
-// Stilleri önce tanımlıyoruz
 const styles = StyleSheet.create({
     container: {
         marginBottom: 24,
@@ -177,13 +174,12 @@ interface LogoStyleSelectorProps {
 }
 
 /**
- * LogoStyleSelector - Logo stilleri seçim komponenti
  * 
- * Yatay kaydırılabilir kart listesi sunar. Kullanıcılar farklı logo 
- * stilleri arasından seçim yapabilirler.
  * 
- * @param onSelect - Bir stil seçildiğinde çağrılacak callback fonksiyonu
- * @param selectedStyleId - Başlangıçta seçili olacak stil ID'si (varsayılan: no-style)
+ * 
+ * 
+ * @param onSelect 
+ * @param selectedStyleId 
  */
 const LogoStyleSelector = ({ onSelect, selectedStyleId = 'no-style' }: LogoStyleSelectorProps) => {
     const [selectedStyle, setSelectedStyle] = useState(selectedStyleId);
