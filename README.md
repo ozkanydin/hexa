@@ -1,6 +1,6 @@
 # HEXA - AI Logo Design
 
-[![HEXA Demo](https://img.youtube.com/vi/6FHfPMcAiBI/maxresdefault.jpg)](https://www.youtube.com/watch?v=6FHfPMcAiBI)
+<iframe width="100%" height="400" src="https://www.youtube.com/embed/6FHfPMcAiBI?autoplay=1&mute=1" title="HEXA Demo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ## Key Features
 
@@ -13,32 +13,32 @@
 
 ## Screenshots
 
-<div style="max-width: 1200px; margin: 40px auto; padding: 0 20px;">
-  <div style="display: flex; flex-direction: column; gap: 40px;">
-    <div style="display: flex; gap: 30px; align-items: center;">
-      <div style="flex: 1; background: #fff; padding: 15px; border-radius: 12px; box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);">
-        <img src="screenshots/1.png" alt="Main Interface" style="width: 100%; height: auto; border-radius: 8px; display: block;"/>
-        <p style="text-align: center; margin-top: 12px; font-size: 14px; color: #444; font-weight: 500;">Main Interface</p>
+<div style="max-width: 800px; margin: 40px auto; padding: 0 20px;">
+  <div style="display: flex; flex-direction: column; gap: 30px;">
+    <div style="display: flex; gap: 20px; align-items: center;">
+      <div style="flex: 1; background: #fff; padding: 12px; border-radius: 10px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);">
+        <img src="screenshots/1.png" alt="Main Interface" style="width: 100%; height: auto; border-radius: 6px; display: block;"/>
+        <p style="text-align: center; margin-top: 10px; font-size: 13px; color: #444; font-weight: 500;">Main Interface</p>
       </div>
-      <div style="flex: 1; background: #fff; padding: 15px; border-radius: 12px; box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);">
-        <img src="screenshots/2.png" alt="Style Selection" style="width: 100%; height: auto; border-radius: 8px; display: block;"/>
-        <p style="text-align: center; margin-top: 12px; font-size: 14px; color: #444; font-weight: 500;">Style Selection</p>
-      </div>
-    </div>
-    <div style="display: flex; gap: 30px; align-items: center;">
-      <div style="flex: 1; background: #fff; padding: 15px; border-radius: 12px; box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);">
-        <img src="screenshots/3.png" alt="Prompt Input" style="width: 100%; height: auto; border-radius: 8px; display: block;"/>
-        <p style="text-align: center; margin-top: 12px; font-size: 14px; color: #444; font-weight: 500;">Prompt Input</p>
-      </div>
-      <div style="flex: 1; background: #fff; padding: 15px; border-radius: 12px; box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);">
-        <img src="screenshots/4.png" alt="Generation Process" style="width: 100%; height: auto; border-radius: 8px; display: block;"/>
-        <p style="text-align: center; margin-top: 12px; font-size: 14px; color: #444; font-weight: 500;">Generation Process</p>
+      <div style="flex: 1; background: #fff; padding: 12px; border-radius: 10px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);">
+        <img src="screenshots/2.png" alt="Style Selection" style="width: 100%; height: auto; border-radius: 6px; display: block;"/>
+        <p style="text-align: center; margin-top: 10px; font-size: 13px; color: #444; font-weight: 500;">Style Selection</p>
       </div>
     </div>
-    <div style="display: flex; gap: 30px; align-items: center;">
-      <div style="flex: 1; background: #fff; padding: 15px; border-radius: 12px; box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);">
-        <img src="screenshots/5.png" alt="Result Screen" style="width: 100%; height: auto; border-radius: 8px; display: block;"/>
-        <p style="text-align: center; margin-top: 12px; font-size: 14px; color: #444; font-weight: 500;">Result Screen</p>
+    <div style="display: flex; gap: 20px; align-items: center;">
+      <div style="flex: 1; background: #fff; padding: 12px; border-radius: 10px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);">
+        <img src="screenshots/3.png" alt="Prompt Input" style="width: 100%; height: auto; border-radius: 6px; display: block;"/>
+        <p style="text-align: center; margin-top: 10px; font-size: 13px; color: #444; font-weight: 500;">Prompt Input</p>
+      </div>
+      <div style="flex: 1; background: #fff; padding: 12px; border-radius: 10px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);">
+        <img src="screenshots/4.png" alt="Generation Process" style="width: 100%; height: auto; border-radius: 6px; display: block;"/>
+        <p style="text-align: center; margin-top: 10px; font-size: 13px; color: #444; font-weight: 500;">Generation Process</p>
+      </div>
+    </div>
+    <div style="display: flex; gap: 20px; align-items: center;">
+      <div style="flex: 1; background: #fff; padding: 12px; border-radius: 10px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);">
+        <img src="screenshots/5.png" alt="Result Screen" style="width: 100%; height: auto; border-radius: 6px; display: block;"/>
+        <p style="text-align: center; margin-top: 10px; font-size: 13px; color: #444; font-weight: 500;">Result Screen</p>
       </div>
     </div>
   </div>
