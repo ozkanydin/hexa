@@ -1,8 +1,7 @@
 # HEXA - AI Logo Design
 
-[![Watch the video](https://img.youtube.com/vi/6FHfPMcAiBI/hqdefault.jpg)](https://www.youtube.com/watch?v=6FHfPMcAiBI)
+📺 [Watch Hexa App Video](https://www.youtube.com/watch?v=6FHfPMcAiBI)
 
-</div>
 
 ## Key Features
 
@@ -15,36 +14,13 @@
 
 ## Screenshots
 
-<div style="max-width: 600px; margin: 30px auto; padding: 0 15px;">
-  <div style="display: flex; flex-direction: column; gap: 20px;">
-    <div style="display: flex; gap: 15px; align-items: center;">
-      <div style="flex: 1; background: #fff; padding: 8px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);">
-        <img src="screenshots/1.png" alt="Main Interface" style="width: 100%; height: auto; border-radius: 4px; display: block;"/>
-        <p style="text-align: center; margin-top: 8px; font-size: 12px; color: #444; font-weight: 500;">Main Interface</p>
-      </div>
-      <div style="flex: 1; background: #fff; padding: 8px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);">
-        <img src="screenshots/2.png" alt="Style Selection" style="width: 100%; height: auto; border-radius: 4px; display: block;"/>
-        <p style="text-align: center; margin-top: 8px; font-size: 12px; color: #444; font-weight: 500;">Style Selection</p>
-      </div>
-    </div>
-    <div style="display: flex; gap: 15px; align-items: center;">
-      <div style="flex: 1; background: #fff; padding: 8px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);">
-        <img src="screenshots/3.png" alt="Prompt Input" style="width: 100%; height: auto; border-radius: 4px; display: block;"/>
-        <p style="text-align: center; margin-top: 8px; font-size: 12px; color: #444; font-weight: 500;">Prompt Input</p>
-      </div>
-      <div style="flex: 1; background: #fff; padding: 8px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);">
-        <img src="screenshots/4.png" alt="Generation Process" style="width: 100%; height: auto; border-radius: 4px; display: block;"/>
-        <p style="text-align: center; margin-top: 8px; font-size: 12px; color: #444; font-weight: 500;">Generation Process</p>
-      </div>
-    </div>
-    <div style="display: flex; gap: 15px; align-items: center;">
-      <div style="flex: 1; background: #fff; padding: 8px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);">
-        <img src="screenshots/5.png" alt="Result Screen" style="width: 100%; height: auto; border-radius: 4px; display: block;"/>
-        <p style="text-align: center; margin-top: 8px; font-size: 12px; color: #444; font-weight: 500;">Result Screen</p>
-      </div>
-    </div>
-  </div>
-</div>
+| Main Screen | Style Selection |
+|-------------|-----------------|
+| ![Main Screen](screenshots/1.png) | ![Style Selection](screenshots/2.png) |
+| Prompt Input | Processing |
+| ![Prompt Input](screenshots/3.png) | ![Processing](screenshots/4.png) |
+| Result |
+| ![Result](screenshots/5.png) |
 
 ## Technical Stack
 
