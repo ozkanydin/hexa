@@ -9,6 +9,8 @@ import LogoStyleSelector from '../components/LogoStyleSelector';
 import CreateButton from '../components/CreateButton';
 import DesignStatusChip from '../components/DesignStatusChip';
 import OutputScreen from './OutputScreen';
+import { logoService } from '../services/logoService';
+import { LogoStyle } from '../types/logo';
 
 const backgroundImage = require('../assets/images/back gradient.png');
 
@@ -19,20 +21,53 @@ const LogoGeneratorScreen = () => {
     const [chipStatus, setChipStatus] = useState<'none' | 'loading' | 'ready'>('none');
     const [modalVisible, setModalVisible] = useState(false);
     const [loadingSeconds, setLoadingSeconds] = useState<number | null>(null);
-    const [selectedStyle, setSelectedStyle] = useState('no-style');
+    const [selectedStyle, setSelectedStyle] = useState<LogoStyle>('no-style');
+    const [currentDesignId, setCurrentDesignId] = useState<string | null>(null);
 
     const handleSurpriseMe = () => {
         setPrompt(EXAMPLE_PROMPT);
     };
 
-    const handleCreate = () => {
-        setChipStatus('loading');
-        const randomMs = Math.floor(Math.random() * (60000 - 30000 + 1)) + 30000;
-        setLoadingSeconds(Math.round(randomMs / 1000));
-        setTimeout(() => {
-            setChipStatus('ready');
+    const handleCreate = async () => {
+        if (!prompt.trim()) {
+            Alert.alert('Hata', 'Lütfen bir prompt girin');
+            return;
+        }
+
+        try {
+            setChipStatus('loading');
+            const randomMs = Math.floor(Math.random() * (60000 - 30000 + 1)) + 30000;
+            setLoadingSeconds(Math.round(randomMs / 1000));
+
+            // Firestore'a kaydet
+            const design = await logoService.createDesign({
+                prompt: prompt.trim(),
+                styleId: selectedStyle,
+            });
+
+            if (design.id) {
+                setCurrentDesignId(design.id);
+            }
+
+            setTimeout(async () => {
+                try {
+
+                    if (design.id) {
+                        await logoService.updateDesignStatus(design.id, 'completed');
+                    }
+                    setChipStatus('ready');
+                    setLoadingSeconds(null);
+                } catch (error) {
+                    console.error('Logo durumu güncellenirken hata:', error);
+                    Alert.alert('Hata', 'Logo durumu güncellenirken bir hata oluştu.');
+                }
+            }, randomMs);
+        } catch (error) {
+            console.error('Logo oluşturulurken hata:', error);
+            Alert.alert('Hata', 'Logo oluşturulurken bir hata oluştu. Lütfen tekrar deneyin.');
+            setChipStatus('none');
             setLoadingSeconds(null);
-        }, randomMs);
+        }
     };
 
     const handleChipPress = () => {
@@ -72,7 +107,7 @@ const LogoGeneratorScreen = () => {
                             <Text style={styles.logoStylesHeader}>Logo Styles</Text>
                             <LogoStyleSelector
                                 selectedStyleId={selectedStyle}
-                                onSelect={setSelectedStyle}
+                                onSelect={(styleId) => setSelectedStyle(styleId as LogoStyle)}
                             />
                             <View style={styles.spacer} />
                         </ScrollView>
@@ -85,10 +120,6 @@ const LogoGeneratorScreen = () => {
                         animationType="slide"
                         onRequestClose={() => setModalVisible(false)}
                         presentationStyle="pageSheet"
-                        style={{
-                            backgroundColor: 'blue',
-                        }}
-
                     >
                         <OutputScreen
                             onClose={() => setModalVisible(false)}
@@ -127,7 +158,7 @@ const styles = StyleSheet.create({
     },
     logoHeader: {
         fontFamily: FONT.bold,
-        fontSize: FONT_SIZES.lg, 
+        fontSize: FONT_SIZES.lg,
         textAlign: 'center',
         color: COLORS.textHeading,
         fontWeight: '800',
@@ -142,14 +173,14 @@ const styles = StyleSheet.create({
     },
     promptHeader: {
         fontFamily: FONT.bold,
-        fontSize: FONT_SIZES.xl, 
+        fontSize: FONT_SIZES.xl,
         color: COLORS.textHeading,
         fontWeight: '800',
         letterSpacing: 0.1,
     },
     logoStylesHeader: {
         fontFamily: FONT.bold,
-        fontSize: FONT_SIZES.xl, 
+        fontSize: FONT_SIZES.xl,
         color: COLORS.textHeading,
         fontWeight: '800',
         marginBottom: 12,
